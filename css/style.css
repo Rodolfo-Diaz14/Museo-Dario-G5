@@ -1,0 +1,29 @@
+
+:root{--brand:#5BC0EB;--accent:#FFD166;--bg:#0b0f1a;--text:#E8F7FF}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial}
+#hud{position:fixed;top:0;left:0;right:0;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;z-index:5;background:linear-gradient(180deg,rgba(11,15,26,.92),rgba(11,15,26,.3),transparent)}
+#hud .brand{font-weight:700;color:var(--brand)}
+#salaTitulo{color:var(--text);flex:1;min-width:220px}
+.controls{display:flex;gap:6px;flex-wrap:wrap}
+.controls button{background:var(--accent);border:0;color:#222;padding:.45rem .7rem;border-radius:8px;font-weight:600;cursor:pointer}
+.controls .btn-link{color:#fff;text-decoration:none;border:1px solid #fff;padding:.35rem .6rem;border-radius:8px;margin-left:.25rem}
+.controls button:hover{filter:brightness(1.08)}
+.hint{color:#bbd7e6;font-size:.85rem;width:100%}
+.hotspot{cursor:pointer}
+/* Overlay */
+#playerOverlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:20;display:flex;align-items:center;justify-content:center}
+#playerOverlay.hidden{display:none}
+.overlay-inner{background:#0b0f1a;border:1px solid #3a4b6b;border-radius:12px;max-width:980px;width:96%;max-height:88vh;display:flex;flex-direction:column;color:#E8F7FF}
+.overlay-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #2d3a53}
+.overlay-header .title{font-weight:700}
+.overlay-header button{background:#ff5b5b;border:0;color:#fff;border-radius:8px;padding:.35rem .6rem;cursor:pointer}
+.overlay-body{display:grid;grid-template-columns:1fr;gap:12px;padding:12px}
+.players{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.player{background:#121a2a;border:1px solid #273551;border-radius:8px;padding:8px}
+.player .label{font-size:.9rem;color:#FFD166;margin-bottom:6px}
+.karaoke{background:#121a2a;border:1px solid #273551;border-radius:8px;padding:8px}
+.karaoke-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.karaoke-text{max-height:36vh;overflow:auto;background:#0e1524;padding:10px;border-radius:6px;line-height:1.6}
+.karaoke-text .line{opacity:.6}
+.karaoke-text .line.active{opacity:1;color:#5BC0EB}

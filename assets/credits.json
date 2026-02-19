@@ -1,0 +1,23 @@
+{
+  "local_images": {
+    "firma_dario.jpg": "assets/images/firma_dario.jpg",
+    "azul_1888.jpg": "assets/images/azul_1888.jpg",
+    "cisnes.jpg": "assets/images/cisnes.jpg",
+    "retratro_dario.jpg": "assets/images/retratro_dario.jpg",
+    "salud_1915.jpg": "assets/images/salud_1915.jpg"
+  },
+  "audio": [
+    {
+      "title": "Prosas profanas (LibriVox)",
+      "embed": "https://archive.org/embed/prosasprofanas_1810_librivox"
+    },
+    {
+      "title": "Simplemente Darío (LibriVox)",
+      "embed": "https://archive.org/embed/simplemente_dario_0810_librivox"
+    }
+  ],
+  "text_reference": {
+    "title": "BV Miguel de Cervantes — Rubén Darío",
+    "url": "https://www.cervantesvirtual.com/obras/autor/dario-ruben-1867-1916-69"
+  }
+}

@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Museo Darío — AR con marcador (Hiro)</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.4/aframe/build/aframe-ar.js"></script>
+  <style>body{margin:0;overflow:hidden}#ui{position:fixed;left:0;right:0;top:0;background:rgba(0,0,0,.5);color:#fff;padding:6px 10px;font-family:system-ui;z-index:5;display:flex;gap:10px;align-items:center}</style>
+</head>
+<body>
+<div id="ui">
+  <strong>AR con marcador (Hiro)</strong>
+  <a href="https://github.com/meizano/AR/blob/master/marker/pattern/Hiro%20pattern.pdf" target="_blank" style="color:#FFD166">Imprimir marcador HIRO (PDF)</a>
+  <a href="index.html" style="color:#fff">Volver al museo</a>
+</div>
+<a-scene embedded arjs="sourceType: webcam;">
+  <a-marker preset="hiro">
+    <a-plane position="0 0 0" rotation="-90 0 0" width="1.2" height="0.8" color="#0b0f1a"></a-plane>
+    <a-image crossorigin="anonymous" src="assets/images/retratro_dario.jpg" position="0 0.02 0" rotation="-90 0 0" width="0.5" height="0.75"></a-image>
+    <a-entity position="0.4 0.01 0" rotation="-90 0 0"
+              text="value: Rubén Darío (1867–1916); color: #E8F7FF; width: 2"></a-entity>
+    <a-entity position="0.4 -0.12 0" rotation="-90 0 0"
+              text="value: Poeta del Modernismo; color: #FFD166; width: 2"></a-entity>
+  </a-marker>
+  <a-entity camera></a-entity>
+</a-scene>
+</body>
+</html>

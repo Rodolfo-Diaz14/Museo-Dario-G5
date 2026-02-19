@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Museo Darío – Versión AR (Hit‑Test)</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <style>#ui{position:fixed;left:0;right:0;bottom:0;display:flex;gap:8px;justify-content:center;padding:10px;background:linear-gradient(0deg,rgba(0,0,0,.6),transparent);z-index:5}#ui button{padding:.6rem .85rem;border-radius:10px;border:1px solid #fff;background:#111;color:#fff;font-weight:600}</style>
+  <script>
+    AFRAME.registerComponent('ar-placer',{
+      init:function(){this.el.sceneEl.addEventListener('enter-vr',()=>{if(this.el.sceneEl.is('ar-mode')){this.setupAR();}});},
+      setupAR:function(){const scene=this.el.sceneEl;const xr=scene.renderer.xr.getSession();xr.requestReferenceSpace('viewer').then(ref=>{xr.requestHitTestSource({space:ref}).then(source=>{const ret=document.getElementById('reticle');scene.addEventListener('renderstart',()=>{scene.renderer.setAnimationLoop((t,frame)=>{if(!frame)return;const space=scene.renderer.xr.getReferenceSpace();const hits=frame.getHitTestResults(source);if(hits.length>0){const pose=hits[0].getPose(space);ret.object3D.position.set(pose.transform.position.x,pose.transform.position.y,pose.transform.position.z);ret.object3D.quaternion.set(pose.transform.orientation.x,pose.transform.orientation.y,pose.transform.orientation.z,pose.transform.orientation.w);ret.setAttribute('visible',true);}});});document.getElementById('placeBtn').addEventListener('click',()=>{if(!ret.getAttribute('visible'))return;const panel=document.createElement('a-entity');panel.setAttribute('geometry','primitive: plane; width: 1.2; height: 0.8');panel.setAttribute('material','color: #0b0f1a; opacity: 0.85');panel.object3D.position.copy(ret.object3D.position);panel.object3D.quaternion.copy(ret.object3D.quaternion);const img=document.createElement('a-image');img.setAttribute('id','ar-img');img.setAttribute('src', window.AR_ITEMS[window.AR_INDEX].src);img.setAttribute('width','1.1');img.setAttribute('height','0.7');img.setAttribute('position','0 0 0.01');img.setAttribute('crossorigin','anonymous');panel.appendChild(img);scene.appendChild(panel);});});});}
+    });
+  </script>
+</head>
+<body>
+  <div id="ui">
+    <button id="startBtn">Entrar en AR</button>
+    <button id="placeBtn">Colocar panel</button>
+    <button id="nextBtn">Siguiente imagen</button>
+  </div>
+  <a-scene renderer="colorManagement: true" embedded webxr="optionalFeatures: hit-test; mode: ar;" ar-placer>
+    <a-entity id="reticle" visible="false" position="0 0 -1">
+      <a-ring color="#FFD166" radius-inner="0.03" radius-outer="0.05"></a-ring>
+      <a-entity position="0 0 0" rotation="-90 0 0"
+                geometry="primitive: cone; radiusBottom: 0.02; height: 0.05"
+                material="color: #FFD166"></a-entity>
+    </a-entity>
+  </a-scene>
+
+  <script>
+    window.AR_ITEMS=[
+      {title:'Retrato', src:'assets/images/retratro_dario.jpg'},
+      {title:'Firma', src:'assets/images/firma_dario.jpg'},
+      {title:'Azul 1888', src:'assets/images/azul_1888.jpg'}
+    ];
+    window.AR_INDEX=0;
+    document.getElementById('startBtn').addEventListener('click',()=>{
+      document.querySelector('a-scene').enterVR();
+    });
+    document.getElementById('nextBtn').addEventListener('click',()=>{
+      window.AR_INDEX=(window.AR_INDEX+1)%window.AR_ITEMS.length;
+      const img=document.getElementById('ar-img');
+      if(img){ img.setAttribute('src', window.AR_ITEMS[window.AR_INDEX].src); }
+    });
+  </script>
+</body>
+</html>

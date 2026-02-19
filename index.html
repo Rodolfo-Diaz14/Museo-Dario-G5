@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Museo Digital: El Universo de Rubén Darío — ULTRA</title>
+  <meta name="description" content="Museo virtual inmersivo con salas 3D, AR y audio sincronizado" />
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@5.0.1/dist/aframe-event-set-component.min.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/karaoke.css" />
+</head>
+<body>
+  <div id="hud">
+    <div class="brand">Museo Digital: El Universo de Rubén Darío — ULTRA</div>
+    <div id="salaTitulo">Sala 1: Metapa – El nacimiento del genio</div>
+    <div class="controls">
+      <button onclick="goTo('sala1')">Sala 1</button>
+      <button onclick="goTo('sala2')">Sala 2</button>
+      <button onclick="goTo('sala3')">Sala 3</button>
+      <button onclick="goTo('sala4')">Sala 4</button>
+      <button onclick="goTo('sala5')">Sala 5</button>
+      <button onclick="goTo('sala6')">Sala 6</button>
+      <a class="btn-link" href="ar.html" target="_blank">AR (Hit‑Test)</a>
+      <a class="btn-link" href="ar-marker.html" target="_blank">AR con marcador</a>
+    </div>
+    <div class="hint">Tip: clic en los botones o hotspots. En Sala 5 abrí audio embebido y texto sincronizado.</div>
+  </div>
+
+  <a-scene background="color: #0c1020">
+    <a-entity id="rig" position="0 1.6 0">
+      <a-entity camera look-controls>
+        <a-entity cursor="fuse: false; rayOrigin: mouse" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015" material="color: #FFD166; shader: flat"></a-entity>
+      </a-entity>
+    </a-entity>
+
+    <a-entity light="type: ambient; color: #BBB"></a-entity>
+    <a-entity light="type: directional; color: #fff; intensity: 0.6" position="1 3 2"></a-entity>
+
+    <!-- SALA 1 -->
+    <a-entity id="sala1" visible="true">
+      <a-sky color="#0e1a2b"></a-sky>
+      <a-entity position="0 2 -3" text="value: Metapa (1867) – El nacimiento del genio; color: #FFFFFF; width: 6; align: center"></a-entity>
+      <a-image crossorigin="anonymous" src="assets/images/retratro_dario.jpg" position="-1.4 1.5 -2.5" width="1.2" height="1.8" material="shader: standard"></a-image>
+      <a-entity position="0 0.5 -2.5" text="value: Infancia, primeras lecturas y entorno familiar.; color: #D2F1FF; width: 4; align: center"></a-entity>
+      <a-entity class="hotspot" geometry="primitive: plane; width: 0.9; height: 0.35" material="color: #FFD166; opacity: 0.9" position="2 1.2 -2.2" onclick="goTo('sala2')">
+        <a-entity position="0 0 0.01" text="value: Ir a Sala 2; color: #221; align: center; width: 2"></a-entity>
+      </a-entity>
+    </a-entity>
+
+    <!-- SALA 2 -->
+    <a-entity id="sala2" visible="false">
+      <a-sky color="#102235"></a-sky>
+      <a-entity position="0 2 -3" text="value: León – El niño prodigio; color: #FFFFFF; width: 6; align: center"></a-entity>
+      <a-image crossorigin="anonymous" src="assets/images/firma_dario.jpg" position="-1.6 1.5 -2.5" width="2.4" height="0.8"></a-image>
+      <a-entity position="0 0.5 -2.5" text="value: Biblioteca, maestros y manuscritos. Línea del tiempo 1880–1890.; color: #D2F1FF; width: 4; align: center"></a-entity>
+      <a-entity class="hotspot" geometry="primitive: plane; width: 0.9; height: 0.35" material="color: #FFD166; opacity: 0.9" position="-2 1.2 -2.2" onclick="goTo('sala1')">
+        <a-entity position="0 0 0.01" text="value: Volver a Sala 1; color: #221; align: center; width: 2"></a-entity>
+      </a-entity>
+      <a-entity class="hotspot" geometry="primitive: plane; width: 0.9; height: 0.35" material="color: #FFD166; opacity: 0.9" position="2 1.2 -2.2" onclick="goTo('sala3')">
+        <a-entity position="0 0 0.01" text="value: Ir a Sala 3; color: #221; align: center; width: 2"></a-entity>
+      </a-entity>
+    </a-entity>
+
+    <!-- SALA 3 -->
+    <a-entity id="sala3" visible="false">
+      <a-sky color="#14273f"></a-sky>
+      <a-entity position="0 2 -3" text="value: Chile – El estallido modernista; color: #FFFFFF; width: 6; align: center"></a-entity>
+      <a-image crossorigin="anonymous" src="assets/images/azul_1888.jpg" position="-1.2 1.5 -2.5" width="1.2" height="1.6"></a-image>
+      <a-entity position="0 0.5 -2.5" text="value: Publicación de Azul… e impacto del Modernismo.; color: #D2F1FF; width: 4; align: center"></a-entity>
+      <a-entity class="hotspot" geometry="primitive: plane; width: 0.9; height: 0.35" material="color: #FFD166; opacity: 0.9" position="-2 1.2 -2.2" onclick="goTo('sala2')">
+        <a-entity position="0 0 0.01" text="value: Volver a Sala 2; color: #221; align: center; width: 2"></a-entity>
+      </a-entity>
+      <a-entity class="hotspot" geometry="primitive: plane; width: 0.9; height: 0.35" material="color: #FFD166; opacity: 0.9" position="2 1.2 -2.2" onclick="goTo('sala4')">
+        <a-entity position="0 0 0.01" text="value: Ir a Sala 4; color: #221; align: center; width: 2"></a-entity>
+      </a-entity>
+    </a-entity>
+
+    <!-- SALA 4 -->
+    <a-entity id="sala4" visible="false">
+      <a-sky color="#18314f"></a-sky>
+      <a-entity position="0 2 -3" text="value: Madrid y París – El poeta diplomático; color: #FFFFFF; width: 6; align: center"></a-entity>
+      <a-image crossorigin="anonymous" src="assets/images/salud_1915.jpg" position="-1.2 1.5 -2.5" width="1.4" height="1.9"></a-image>
+      <a-entity position="0 0.5 -2.5" text="value: Viajes, cafés literarios y redes intelectuales.; color: #D2F1FF; width: 4; align: center"></a-entity>
+      <a-entity class="hotspot" geometry="primitive: plane; width: 0.9; height: 0.35" material="color: #FFD166; opacity: 0.9" position="-2 1.2 -2.2" onclick="goTo('sala3')">
+        <a-entity position="0 0 0.01" text="value: Volver a Sala 3; color: #221; align: center; width: 2"></a-entity>
+      </a-entity>
+      <a-entity class="hotspot" geometry="primitive: plane; width: 0.9; height: 0.35" material="color: #FFD166; opacity: 0.9" position="2 1.2 -2.2" onclick="goTo('sala5')">
+        <a-entity position="0 0 0.01" text="value: Ir a Sala 5; color: #221; align: center; width: 2"></a-entity>
+      </a-entity>
+    </a-entity>
+
+    <!-- SALA 5 -->
+    <a-entity id="sala5" visible="false">
+      <a-sky color="#1b3a66"></a-sky>
+      <a-entity position="0 2.1 -3" text="value: Obras maestras – Poemas visuales y audio; color: #FFFFFF; width: 6; align: center"></a-entity>
+      <a-image crossorigin="anonymous" src="assets/images/cisnes.jpg" position="-1.6 1.5 -2.5" width="1.5" height="1.1"></a-image>
+      <a-entity position="0 0.45 -2.5" text="value: Sonatina, Los cisnes, A Margarita Debayle.; color: #D2F1FF; width: 4; align: center"></a-entity>
+      <a-entity geometry="primitive: plane; width: 1.2; height: 0.35" material="color: #4CAF50; opacity: 0.95" position="0 0.6 -2.2" onclick="openOverlay()">
+        <a-entity position="0 0 0.01" text="value: Abrir audio y texto sincronizado; color: #fff; align: center; width: 2"></a-entity>
+      </a-entity>
+      <a-entity class="hotspot" geometry="primitive: plane; width: 0.9; height: 0.35" material="color: #FFD166; opacity: 0.9" position="-2 1.2 -2.2" onclick="goTo('sala4')">
+        <a-entity position="0 0 0.01" text="value: Volver a Sala 4; color: #221; align: center; width: 2"></a-entity>
+      </a-entity>
+      <a-entity class="hotspot" geometry="primitive: plane; width: 0.9; height: 0.35" material="color: #FFD166; opacity: 0.9" position="2 1.2 -2.2" onclick="goTo('sala6')">
+        <a-entity position="0 0 0.01" text="value: Ir a Sala 6; color: #221; align: center; width: 2"></a-entity>
+      </a-entity>
+    </a-entity>
+
+    <!-- SALA 6 -->
+    <a-entity id="sala6" visible="false">
+      <a-sky color="#214674"></a-sky>
+      <a-entity position="0 2 -3" text="value: Últimos años y legado; color: #FFFFFF; width: 6; align: center"></a-entity>
+      <a-entity position="-1.4 1.7 -2.5" text="value: Ver homenaje y materiales — abre enlace; color: #D2F1FF; width: 2.8; align: center"></a-entity>
+      <a-link href="https://www.cervantesvirtual.com/portales/ruben_dario/" title="Portal Rubén Darío – Cervantes Virtual" position="-1.4 1.2 -2.3" geometry="primitive: plane; width: 1.6; height: 0.18" material="color: #2b5c9e"></a-link>
+      <a-entity class="hotspot" geometry="primitive: plane; width: 0.9; height: 0.35" material="color: #FFD166; opacity: 0.9" position="-2 1.2 -2.2" onclick="goTo('sala5')">
+        <a-entity position="0 0 0.01" text="value: Volver a Sala 5; color: #221; align: center; width: 2"></a-entity>
+      </a-entity>
+    </a-entity>
+  </a-scene>
+
+  <!-- Overlay audio + texto sincronizado -->
+  <div id="playerOverlay" class="hidden">
+    <div class="overlay-inner">
+      <div class="overlay-header">
+        <div class="title">Obras maestras — Audio embebido y texto sincronizado</div>
+        <button id="closeOverlay">✕</button>
+      </div>
+      <div class="overlay-body">
+        <div class="players">
+          <div class="player">
+            <div class="label">Prosas profanas (LibriVox)</div>
+            <iframe src="https://archive.org/embed/prosasprofanas_1810_librivox" width="100%" height="80" frameborder="0"></iframe>
+          </div>
+          <div class="player">
+            <div class="label">Simplemente Darío (LibriVox)</div>
+            <iframe src="https://archive.org/embed/simplemente_dario_0810_librivox" width="100%" height="80" frameborder="0"></iframe>
+          </div>
+        </div>
+        <div class="karaoke">
+          <div class="karaoke-controls">
+            <select id="poemSelect">
+              <option value="sonatina">Sonatina (dur. ~3:03)</option>
+              <option value="cisnes">Los cisnes (fragmento)</option>
+              <option value="margarita">A Margarita Debayle (fragmento)</option>
+            </select>
+            <button id="kStart">Iniciar sincronización</button>
+            <button id="kPause">Pausa</button>
+            <button id="kReset">Reiniciar</button>
+            <a id="poemSource" href="https://www.cervantesvirtual.com/obras/autor/dario-ruben-1867-1916-69" target="_blank">Fuente (Cervantes)</a>
+          </div>
+          <div id="karaokeText" class="karaoke-text"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/karaoke.js"></script>
+</body>
+</html>
